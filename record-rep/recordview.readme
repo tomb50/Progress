@@ -1,0 +1,44 @@
+Readme file for: Recordview.p
+Author: Tom B
+Date 09-02-2014
+
+The program seeks to output record data for any table specified by the user.
+All available indices are displayed to the user and they specify which to use.
+The values for the search critiria are then specified and the record result(s) is output
+to "RecordRep<time>.txt".
+
+Benefits of use:
+Aside from the main flexibility of being able to query any table, using any index, the fact that
+the output is dumped to a file rather than screen means that exceeding the frame limit for large tables 
+and fields is not an issue.
+
+Directions for use:
+>Run the program.
+>Enter the required full table name.
+>Available keys are displayed  at the bottom of the screen.
+>Enter the name of the required key.
+>Enter the values for each element of the key, program then will run.
+>Navigate to the default output directory to find the output file.
+
+Notes for use:
+Delete the output file after use, for security we don't want to leave raw table data on disk.
+Currently all index elements are required and cannot be null, this could change in future if needed.
+The fields in the output are formatted at 100 characters, this should be more than enoughfor general cases.       
+The output file contains a copy ot the query string used, for reference.
+The program is not restricted to unique, all records will be returned for a fully populated non-unique key
+(which is one of the reasons for ensuring non-empty key values). Multiple records are clearly seperated in
+the output file. 
+
+
+Technical details:
+The program leverages accessibility to table meta info and dynamics queries (OpenEdge 9+) to find
+all indices for the table specified and generate the search criteria from the user supplied values.
+When querying the table meta, table type is hardcoded to 'T' so systables cannot be queried (Security).
+
+Future improvements:
+> Create a similar program which updates specific fields for arbitrary table (only for PK!).
+> Add optional specific field functionality, so not everything is dumped.
+> Once the above is implemented, display the output on screen aswell/instead of output file. 
+> Tidy the GUI?     
+
+
